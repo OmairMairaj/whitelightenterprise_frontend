@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* General Page Styles */
+.page-container {
+
+  /* max-height: 500px; */
+ height: 100vh;
+ width: 100vw;
+ 
+  font-family: 'Arial', sans-serif;
+}
+
+.bg-gray-100 {
+  background-color: #f7fafc;
+}
+
+.text-gray-800 {
+  color: #2d3748;
+}
+
+/* bannerS Section */
+.bannerS {
+
+  margin-bottom: 0%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../components/home/main/modern-decorative-lamps.jpg"); /* Blue color */
+}
+
+.bannerS .image-container {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.bannerS .image-container img {
+  border-radius: 50%;
+ 
+  height: 12rem;
+  width: 12rem;
+  object-fit: cover;
+}
+
+.bannerS .text-section {
+  padding-left: 3rem;
+  max-width: 50%;
+}
+
+.bannerS .text-section h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.bannerS .text-section p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.bannerS .text-section button {
+  padding: 0.75rem 1.5rem;
+  background-color: #f6ad55; /* Orange color */
+  color: white;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  transition: background-color 0.3s ease;
+}
+
+.bannerS .text-section button:hover {
+  background-color: #dd6b20; /* Darker orange for hover effect */
+}
+
+.bannerS .absolute {
+  
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+
+}
+
+/* Products Section */
+.products-section {
+  /* padding: 3rem 0; */
+  
+  background-color: #fff;
+}
+
+.products-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.products-section .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 0 2rem;
+}
+.product-card {
+  width: 18rem; /* Match 'w-72' */
+  height: auto;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15.5rem 15.5rem 0.75rem 0.75rem; /* Top corners more rounded */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.product-card img {
+  height: 20rem; /* Match 'h-80' */
+  width: 18rem; /* Match 'w-72' */
+  object-fit: cover;
+  border-top-left-radius: 50rem; /* Match rounded top-left */
+  border-top-right-radius: 50rem; /* Match rounded top-right */
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.product-card .content {
+  padding: 0.75rem; /* Match 'px-4 py-3' */
+  width: 18rem;
+}
+
+.product-card .brand {
+  color: #A0AEC0; /* Match 'text-gray-400' */
+  text-transform: uppercase;
+  font-size: 0.75rem; /* Match 'text-xs' */
+  margin-right: 0.75rem;
+}
+
+.product-card .name {
+  font-size: 1.125rem; /* Match 'text-lg' */
+  font-weight: bold;
+  color: black;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-card .pricing {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem; /* Match 'my-3' */
+}
+
+.product-card .current-price {
+  font-size: 1.125rem; /* Match 'text-lg' */
+  font-weight: 600;
+  color: black;
+}
+
+.product-card .original-price {
+  font-size: 0.875rem; /* Match 'text-sm' */
+  color: #718096; /* Match 'text-gray-600' */
+  margin-left: 0.5rem;
+  text-decoration: line-through;
+}
+
+.product-card .icon {
+  margin-left: auto;
+  color: black;
+}

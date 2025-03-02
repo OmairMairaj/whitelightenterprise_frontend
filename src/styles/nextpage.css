@@ -1,0 +1,222 @@
+/* General Reset */
+ 
+             
+             /* Section Styling */
+             .section {
+               position: relative;
+               width: 100%;
+               height: 100vh;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+             }
+             
+             .full-height {
+               height: 100vh;
+             }
+             
+             /* Parallax Effects */
+             .parallax-00,
+             .parallax-01 {
+               position: absolute;
+               width: 100%;
+               height: 100%;
+               background-size: cover;
+               background-position: center;
+               z-index: -1;
+             }
+             
+             .parallax-fade-top {
+               transition: all 0.3s ease;
+             }
+             
+             /* Shadow Title */
+             .shadow-title {
+               position: absolute;
+               font-size: 10rem;
+               font-weight: bold;
+               color: rgba(0, 0, 0, 0.1);
+               text-transform: uppercase;
+               letter-spacing: 10px;
+               top: 50%;
+               left: 50%;
+               transform: translate(-50%, -50%);
+             }
+             
+             /* Case Study Wrapper */
+             .case-study-wrapper {
+               list-style: none;
+               padding: 0;
+               margin: 0;
+               display: flex;
+               flex-direction: column;
+               position: absolute;
+               top: 50%;
+               left: 5%;
+               transform: translateY(-50%);
+             }
+             
+             .case-study-name {
+               margin: 10px 0;
+               font-size: 1.2rem;
+               cursor: pointer;
+             }
+             
+             .case-study-name a {
+               color: #fff;
+               text-decoration: none;
+             }
+             
+             .case-study-name.active a {
+               color: #ff9900;
+             }
+             
+             /* Case Study Images */
+             .case-study-images {
+               list-style: none;
+               padding: 0;
+               margin: 0;
+               position: absolute;
+               right: 5%;
+               top: 50%;
+               transform: translateY(-50%);
+             }
+             
+             .case-study-images li {
+               display: none;
+               position: relative;
+               text-align: center;
+             }
+             
+             .case-study-images li.show {
+               display: block;
+             }
+             
+             .img-hero-background img {
+               max-width: 100%;
+               height: auto;
+             }
+             
+             /* Hero Numbers */
+             .hero-number-back,
+             .hero-number,
+             .hero-number-fixed {
+               font-size: 4rem;
+               font-weight: bold;
+               position: absolute;
+               color: rgba(255, 255, 255, 0.1);
+               top: 50%;
+               left: 50%;
+               transform: translate(-50%, -50%);
+             }
+             
+             .hero-number-back {
+               z-index: 0;
+             }
+             
+             .hero-number {
+               z-index: 1;
+               color: #ff9900;
+             }
+             
+             .hero-number-fixed {
+               z-index: -1;
+               color: rgba(255, 255, 255, 0.05);
+             }
+             
+             /* Cursor Effects */
+             .cursor,
+             .cursor2,
+             .cursor3 {
+               position: fixed;
+               width: 15px;
+               height: 15px;
+               background-color: #fff;
+               border-radius: 50%;
+               pointer-events: none;
+               transform: translate(-50%, -50%);
+               mix-blend-mode: difference;
+               z-index: 9999;
+             }
+             
+             .cursor2 {
+               width: 30px;
+               height: 30px;
+               background-color: rgba(255, 255, 255, 0.6);
+             }
+             
+             .cursor3 {
+               width: 45px;
+               height: 45px;
+               background-color: rgba(255, 255, 255, 0.3);
+             }
+             
+             .cursor.hover {
+               background-color: #ff9900;
+             }
+             
+             .cursor2.hover,
+             .cursor3.hover {
+               background-color: rgba(255, 153, 0, 0.6);
+             }
+             
+             /* Scroll-to-Top Button */
+             .scroll-to-top {
+               position: fixed;
+               bottom: 20px;
+               right: 20px;
+               width: 50px;
+               height: 50px;
+               background-color: #ff9900;
+               border-radius: 50%;
+               display: none;
+               justify-content: center;
+               align-items: center;
+               cursor: pointer;
+               z-index: 1000;
+               transition: all 0.3s ease;
+             }
+             
+             .scroll-to-top.active-arrow {
+               display: flex;
+             }
+             
+             .scroll-to-top:hover {
+               background-color: #ffa500;
+             }
+             
+             /* Section Titles */
+             .section-title-wrap {
+               text-align: center;
+               color: #fff;
+             }
+             
+             .section-title-wrap h1 {
+               font-size: 3rem;
+               margin: 0;
+               line-height: 1.2;
+             }
+             
+             .section-title-wrap p {
+               font-size: 1.2rem;
+               margin-bottom: 10px;
+               color: rgba(255, 255, 255, 0.7);
+             }
+             
+             /* Footer Link */
+             .project-link-wrap {
+               text-transform: uppercase;
+               color: #fff;
+               font-size: 1.5rem;
+               font-weight: bold;
+               border: 2px solid #fff;
+               padding: 10px 20px;
+               cursor: pointer;
+               transition: all 0.3s ease;
+             }
+             
+             .project-link-wrap:hover {
+               color: #ff9900;
+               border-color: #ff9900;
+             }
+             
