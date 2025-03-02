@@ -3,24 +3,30 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 const WhatsAppButton: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const phoneNumber = '9168948474'; // Replace with your WhatsApp number
+  const phoneNumber = '+919168948474'; // Replace with your WhatsApp number
   const callNumber = '+919168948474'; // Replace with your call number
 
-  const toggleChat = () => {
-    setIsChatOpen((prev) => !prev);
-  };
+  // const toggleChat = () => {
+  //   setIsChatOpen((prev) => !prev);
+  // };
 
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   const whatsappUrl = isMobile
     ? `https://api.whatsapp.com/send?phone=${phoneNumber}`
     : `https://web.whatsapp.com/send?phone=${phoneNumber}`;
 
+
+  const openWhatsApp = () => {
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div>
       {/* WhatsApp Sticky Button */}
-      <div
+      <a
         className="whatsapp-button"
-        onClick={toggleChat}
+        onClick={openWhatsApp}
+        target="_blank"
         style={{
           position: 'fixed',
           bottom: '80px',
@@ -41,9 +47,9 @@ const WhatsAppButton: React.FC = () => {
         title="Open WhatsApp Chat"
       >
         <FaWhatsapp size={24} color="#fff" />
-      </div>
+      </a>
 
-      {/* Chat Window */}
+      {/* Chat Window
       {isChatOpen && (
         <div
           className="whatsapp-chat-container"
@@ -71,7 +77,7 @@ const WhatsAppButton: React.FC = () => {
             title="WhatsApp Chat"
           />
         </div>
-      )}
+      )} */}
 
       {/* Click-to-Call Button */}
       <div

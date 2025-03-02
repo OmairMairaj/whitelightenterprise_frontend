@@ -70,7 +70,7 @@ const Navbar = () => {
     <>
       {/* Announcement Bar */}
       <div className="announcement-bar">
-        <a href="https://wa.me/9168948474?text=I'm%20interested%20in%20your%20light%20">
+        <a target="_blank" href="https://wa.me/+919168948474?text=I'm%20interested%20in%20your%20light%20">
           Contact on WhatsApp for offer </a>
       </div>
 
