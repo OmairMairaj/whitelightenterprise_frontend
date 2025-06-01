@@ -45,7 +45,7 @@ const Home = () => {
       <br />
       <ProductSlideshow />
       <WaveGrid />
-    
+
       <ArchitectureLights />
       <CommercialLedLight />
       <Banner
@@ -74,7 +74,7 @@ const Home = () => {
       <VideoSection />
       {/* <FAQ /> */}
       <Review />
-      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3763.1829437759575!2d72.86312507521362!3d19.404499981868867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDI0JzE2LjIiTiA3MsKwNTEnNTYuNSJF!5e0!3m2!1sen!2sin!4v1735846832174!5m2!1sen!2sin" width="100%" height="500px"   ></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3763.1829437759575!2d72.86312507521362!3d19.404499981868867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDI0JzE2LjIiTiA3MsKwNTEnNTYuNSJF!5e0!3m2!1sen!2sin!4v1735846832174!5m2!1sen!2sin" width="100%" height="400px"   ></iframe>
 
     </div>
   );

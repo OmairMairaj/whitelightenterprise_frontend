@@ -86,10 +86,10 @@ const ProductList = ({ subCatId }) => {
                                         onMouseLeave={() => setHoveredProduct(null)}
                                     >
 
-                                        <div className="trending-item">
+                                        <div className="trending-item ">
                                             <img
                                                 src={hoveredProduct === index ? product.hoverImage : product.image}
-                                                className="h-80 w-80 object-contain rounded-t-xl "
+                                                className="h-56 w-56 object-contain rounded-t-xl bg-[#EDEEF1] "
                                                 alt={product.title}
                                             />
                                             <h3>{product.title}</h3>

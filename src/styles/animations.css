@@ -616,7 +616,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  /* background-color: #d854bb00; */
+  background-color: #F0F1F4;
   border-bottom: 1px solid #ddd;
   position: sticky;
   backface-visibility: var(#ff2828);
@@ -807,7 +807,7 @@ body {
 
 .containerm {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1530px;
   /* Set a maximum width for the container */
   padding: 0 20px;
   /* Padding for responsiveness */
@@ -855,7 +855,7 @@ body {
 }
 
 .trending-item {
-  width: 280px;
+  width: 220px;
   background: white;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 15rem 15rem 10px 10px;

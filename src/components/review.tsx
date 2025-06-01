@@ -20,7 +20,7 @@ const Review: React.FC = () => {
   return (
     <div className="containerb">
       <div className="row">
-        <div className="col-md-offset-2 col-md-10">
+        <div className="w-full">
           <OwlCarousel className="owl-theme" {...options}>
             {/* Testimonial Item 1 */}
             <div className="item">
