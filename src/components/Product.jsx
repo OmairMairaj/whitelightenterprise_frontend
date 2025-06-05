@@ -222,7 +222,7 @@ const Product = () => {
                     <img
                       src={imgObj.img}
                       alt={`Carousel ${idx + 1}`}
-                      className="w-full h-96 object-contain bg-white"
+                      className="w-full h-96 object-contain"
                     />
                     {/* {imgObj.caption && (
                       <div className="text-center text-sm text-gray-600">{imgObj.caption}</div>
