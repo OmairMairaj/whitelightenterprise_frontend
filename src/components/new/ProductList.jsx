@@ -89,7 +89,7 @@ const ProductList = ({ subCatId }) => {
                                         <div className="trending-item ">
                                             <img
                                                 src={hoveredProduct === index ? product.hoverImage : product.image}
-                                                className="h-56 w-56 object-contain rounded-t-xl bg-[#EDEEF1] "
+                                                className="h-56 w-56 object-contain rounded-t-xl bg-[#BFC6CA] "
                                                 alt={product.title}
                                             />
                                             <h3>{product.title}</h3>

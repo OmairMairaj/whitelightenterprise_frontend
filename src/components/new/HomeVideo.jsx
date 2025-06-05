@@ -1,8 +1,8 @@
 import React from 'react';
 
-const HomeVideo = ({url}) => {
+const HomeVideo = ({ url }) => {
     return (
-        <div className="w-full h-full md:h-[570px] flex items-center justify-center overflow-hidden">
+        <div className="w-full h-full sm:h-[55vh] flex items-center justify-center overflow-hidden">
             <video
                 className="w-full object-cover"
                 autoPlay

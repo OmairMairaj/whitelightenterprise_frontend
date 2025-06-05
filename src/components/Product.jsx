@@ -105,7 +105,7 @@ const Product = () => {
     }, 3000); // 3 seconds
 
     return () => clearInterval(interval);
-  }, [allImages]);
+  }, [allImages, carouselIndex]);
 
   const getSpecs = (desc) => {
     // Split by commas that are NOT inside values (just in case), but your format looks safe for now
@@ -128,7 +128,7 @@ const Product = () => {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center overflow-hidden">
       <div className="relative w-full aspect-[2/1] sm:aspect-[3/1] max-w-[1920px] bg-gray-200">
         <img src={product.bannerImage || banner} alt="Banner" className="absolute inset-0 w-full h-full object-cover object-top" />
       </div>
@@ -139,19 +139,21 @@ const Product = () => {
 
           {/* Product Details */}
           <div className="space-y-6 col-span-1 lg:col-span-5 md:py-6 flex flex-col justify-between">
-            <div className="space-y-4">
-              <h1 className="text-3xl font-bold text-gray-900">{product.title}</h1>
-              <div className="flex items-center space-x-4">
-                <span className="text-2xl font-bold text-gray-900">₹{product.price}</span>
-                {product.discount > 0 && (
-                  <span className="text-lg text-green-600">-{product.discount}% off</span>
-                )}
+            <div className="flex flex-col space-y-4">
+              <div className="space-y-4">
+                <h1 className="text-3xl font-bold text-gray-900">{product.title}</h1>
+                <div className="flex items-center space-x-4">
+                  <span className="text-2xl font-bold text-gray-900">₹{product.price}</span>
+                  {product.discount > 0 && (
+                    <span className="text-lg text-green-600">-{product.discount}% off</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="prose max-w-none">
+                <p className="text-gray-700">{product.shortDescription}</p>
               </div>
             </div>
-
-            {/* <div className="prose max-w-none">
-            <p className="text-gray-700">{product.description}</p>
-            </div> */}
 
             <div className="space-y-4">
               {/* Availability */}
@@ -228,7 +230,7 @@ const Product = () => {
                   </div>
                 ))}
               </div>
-              <div className="lg:hidden absolute bottom-10 w-full flex justify-center mt-2 gap-2">
+              {/* <div className="lg:hidden absolute bottom-10 w-full flex justify-center mt-2 gap-2">
                 {allImages?.map((_, idx) => (
                   <button
                     key={idx}
@@ -237,25 +239,45 @@ const Product = () => {
                     aria-label={`Go to slide ${idx + 1}`}
                   ></button>
                 ))}
-              </div>
+              </div> */}
               <button
-                className="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 p-2 z-10"
+                className="flex absolute left-2 top-1/2 -translate-y-1/2 p-2 z-10"
                 onClick={() => setCarouselIndex((prev) => prev === 0 ? allImages?.length - 1 : prev - 1)}
                 aria-label="Previous"
               >
                 <ChevronLeft className="h-8 w-8 text-[#b9b9b9]" />
               </button>
               <button
-                className="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 p-2 z-10"
+                className="flex absolute right-2 top-1/2 -translate-y-1/2 p-2 z-10"
                 onClick={() => setCarouselIndex((prev) => prev === allImages?.length - 1 ? 0 : prev + 1)}
                 aria-label="Next"
               >
                 <ChevronRight className="h-8 w-8 text-[#b9b9b9]" />
               </button>
             </div>
+            <div className="flex flex-wrap pt-2 gap-1.5">
+              {allImages?.map((imgObj, idx) => (
+                <div
+                  key={idx}
+                  className={`flex w-[24%] rounded-md  shadow-sm ${carouselIndex == idx ? 'border-1 border-orange-400' : 'border-1 border-gray-300'} overflow-hidden`}
+                  onClick={() => setCarouselIndex(idx)}
+                >
+                  <img
+                    src={imgObj.img}
+                    alt={`Carousel ${idx + 1}`}
+                    className="w-full h-full object-contain"
+                  />
+                  {/* {imgObj.caption && (
+                      <div className="text-center text-sm text-gray-600">{imgObj.caption}</div>
+                    )} */}
+                </div>
+
+              ))}
+
+            </div>
           </div>
         </div>
-        <div className="prose max-w-none space-y-2">
+        <div className="space-y-2">
           <h2 className="text-xl font-semibold text-gray-800">Specifications</h2>
           <table className="min-w-full text-sm border">
             <tbody>
