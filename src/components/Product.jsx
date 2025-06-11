@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import config from "../data/config";
 import banner from "../../pictures/mainbanner.png";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download } from "lucide-react";
 
 const Product = () => {
   const { id } = useParams();
@@ -15,9 +15,7 @@ const Product = () => {
   const [specs, setSpecs] = useState(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [allImages, setAllImages] = useState([]);
-
-
-
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // Fetch product data on component mount
   useEffect(() => {
@@ -72,6 +70,22 @@ const Product = () => {
       setShowEmailForm(false);
     } catch (error) {
       setMessage("Failed to send email. Please try again.");
+    }
+  };
+
+  // PDF download function
+  const handleDownloadPdf = () => {
+    console.log('Product data:', product);
+    if (product.pdfFile) {
+      const link = document.createElement('a');
+      link.href = product.pdfFile;
+      link.download = `${product.title}_manual.pdf`;
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      console.log('No PDF file available for this product');
     }
   };
 
@@ -150,8 +164,21 @@ const Product = () => {
                 </div>
               </div>
 
-              <div className="prose max-w-none">
-                <p className="text-gray-700">{product.shortDescription}</p>
+              <div className="relative">
+                <div
+                  className={`prose max-w-none text-gray-700 transition-all duration-300 ${
+                    !isExpanded ? 'line-clamp-3 overflow-hidden' : ''
+                  }`}
+                  dangerouslySetInnerHTML={{ __html: product.shortDescription }}
+                />
+                {product.shortDescription && (
+                  <button
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="mt-2 text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors"
+                  >
+                    {isExpanded ? 'View Less' : 'View More'}
+                  </button>
+                )}
               </div>
             </div>
 
@@ -224,22 +251,9 @@ const Product = () => {
                       alt={`Carousel ${idx + 1}`}
                       className="w-full h-96 object-contain"
                     />
-                    {/* {imgObj.caption && (
-                      <div className="text-center text-sm text-gray-600">{imgObj.caption}</div>
-                    )} */}
                   </div>
                 ))}
               </div>
-              {/* <div className="lg:hidden absolute bottom-10 w-full flex justify-center mt-2 gap-2">
-                {allImages?.map((_, idx) => (
-                  <button
-                    key={idx}
-                    className={`w-9 h-1 rounded-full ${carouselIndex === idx ? 'bg-orange-300' : 'bg-gray-300'}`}
-                    onClick={() => setCarouselIndex(idx)}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  ></button>
-                ))}
-              </div> */}
               <button
                 className="flex absolute left-2 top-1/2 -translate-y-1/2 p-2 z-10"
                 onClick={() => setCarouselIndex((prev) => prev === 0 ? allImages?.length - 1 : prev - 1)}
@@ -267,9 +281,6 @@ const Product = () => {
                     alt={`Carousel ${idx + 1}`}
                     className="w-full h-full object-contain"
                   />
-                  {/* {imgObj.caption && (
-                      <div className="text-center text-sm text-gray-600">{imgObj.caption}</div>
-                    )} */}
                 </div>
 
               ))}
@@ -290,6 +301,19 @@ const Product = () => {
             </tbody>
           </table>
         </div>
+
+        {/* PDF Download Button */}
+        {product.pdfFile && (
+          <div className="mt-6">
+            <button
+              onClick={handleDownloadPdf}
+              className="flex items-center justify-center space-x-2 bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors"
+            >
+              <Download className="w-5 h-5" />
+              <span>Download Manual</span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
 
