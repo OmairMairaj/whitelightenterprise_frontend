@@ -43,7 +43,7 @@ const Home = () => {
 
       <Categories />
       <br />
-      <ProductSlideshow />
+      {/* <ProductSlideshow /> */}
       <WaveGrid />
 
       <ArchitectureLights />

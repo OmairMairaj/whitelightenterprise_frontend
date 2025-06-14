@@ -46,23 +46,124 @@ body {
   animation: slide-left 20s linear infinite;
 }
 
-/* Review Slider Animation */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
+
+
+
+/* --- Review/Testimonial Slider - Elegant & Modern Professional Theme --- */
+
+
+
+/* animation.css OR your global index.css */
+
+/* Typing Animation for Testimonials - NO BLINKING CURSOR */
+.testimonial-text-typing {
+  /* New class name for clarity */
+  display: inline-block;
+  /* Or block if it takes full width before quotes */
+  overflow: hidden;
+  white-space: pre-wrap;
+  animation: typingAnimation 3s steps(60, end) forwards;
+  width: 0%;
+  max-width: 100%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  /* Try middle or top for better alignment with quotes */
+  line-height: inherit;
+}
+
+@keyframes typingAnimation {
+  from {
+    width: 0%;
   }
 
-  100% {
-    transform: translateX(-100%);
+  to {
+    width: 100%;
   }
 }
 
-.slider-track {
-  display: flex;
-  /* Aligns items in the slider */
-  will-change: transform;
-  /* Optimizes animation performance */
-  animation: scroll-left 30s linear infinite;
+/* Styling for Owl Carousel Dots */
+.owl-theme .owl-dots .owl-dot span {
+  background: #D1D5DB !important;
+  width: 9px !important;
+  height: 9px !important;
+  margin: 5px 4px !important;
+  transition: background 0.3s ease !important;
+  border-radius: 50% !important;
+  display: block !important;
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: #F97316 !important;
+  /* Brighter Orange for active dot */
+  transform: scale(1.1);
+}
+
+/* Hide Owl Carousel Default Nav Arrows */
+.owl-theme .owl-nav {
+  display: none !important;
+}
+
+/* Basic Owl Carousel Visibility Fixes (Keep these) */
+.owl-carousel .owl-stage-outer {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+
+.owl-carousel .owl-stage {
+  position: relative;
+  -ms-touch-action: pan-Y;
+  touch-action: manipulation;
+  -moz-backface-visibility: hidden;
+}
+
+.owl-carousel .owl-item {
+  position: relative;
+  min-height: 1px;
+  float: left;
+  -webkit-backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  display: block;
+}
+
+.owl-carousel .owl-item img {
+  display: block;
+  width: 100%;
+}
+
+.owl-carousel .owl-stage:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+
+/* Ensure Space Grotesk is imported if used, e.g., in your main CSS or index.html */
+/* @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap'); */
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  /* Example font */
+}
+
+/* In your global CSS file (e.g., index.css or animations.css) */
+
+#particle-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  /* Behind other content */
+  opacity: 0.3;
+  /* Keep it subtle */
 }
 
 /* FAQ Animation */
@@ -331,117 +432,9 @@ body {
 
 
 
-/* Slider Container */
-.review-slider-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: #f9f9f9;
-  width: 100%;
-  max-width: 700px;
-  margin: auto;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-.review-slider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  background-color: #f9f9f9;
-  padding: 20px 0;
-}
 
-.slider-content {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
-  max-width: 500px;
-  overflow: hidden;
-}
 
-.review-card {
-  min-width: 100%;
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.5s ease;
-  text-align: center;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.review-card.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.review-text {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.review-link {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 12px;
-}
-
-.review-link:hover {
-  text-decoration: underline;
-}
-
-.reviewer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.reviewer-img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-.reviewer-name {
-  font-weight: bold;
-  font-size: 14px;
-  color: #222;
-}
-
-.reviewer-location {
-  font-size: 12px;
-  color: #777;
-}
-
-/* Animation for continuous scrolling */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* Responsive Adjustments */
-@media screen and (max-width: 600px) {
-  .review-card {
-    flex: 0 0 250px;
-    /* Smaller card width */
-  }
-}
 
 /* Video Section Styling */
 .video-section {
@@ -593,77 +586,285 @@ body {
   /* Optional padding to create some space around the content */
 }
 
-
-
 /* Navbar Base */
-.space-grotesk {
+.space-grotesk-font {
+  /* More specific class name if you want to apply it selectively */
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
-}
-
-/* General Styles */
-.announcement-bar {
-  background-color: #746B61;
-  color: #333;
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
-  height: 5vh;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #F0F1F4;
-  border-bottom: 1px solid #ddd;
+  padding: 12px 25px;
+  /* CHANGED - Lighter, vibrant orange for the main navbar */
+  background-color: #dfd8cd;
+  border-bottom: 2px solid #46423c;
+  /* Adjusted border to match new bg */
+  color: #FFFFFF;
+  /* White text still looks good */
   position: sticky;
-  backface-visibility: var(#ff2828);
   top: 0;
   z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  /* Added transition for bg */
+}
+
+.navbar-scrolled {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  /* Optional: slightly change background on scroll if desired */
+  /* background-color: #F39C12; */
 }
 
 /* Logo */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
+}
+
 .logo-text {
-  font-size: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  /* Ensuring Space Grotesk */
+  font-size: 1.5rem;
   font-weight: bold;
+  /* 700 */
   text-decoration: none;
-  color: #333;
+  color: #FFFFFF;
 }
 
 /* Center Section Links */
 .nav-center {
   display: flex;
-  gap: 20px;
+  gap: 22px;
+  align-items: center;
 }
 
 .nav-link {
   text-decoration: none;
-  color: #333;
-  font-size: 16px;
+  color: #474230;
+  font-family: "Space Grotesk", sans-serif;
+  /* CHANGED - Stylish Font */
+  font-size: 1.05rem;
+  /* Slightly adjusted size for new font */
+  font-weight: 800;
+  /* CHANGED - Bolder */
+  padding: 5px 0;
   position: relative;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .nav-link:hover {
-  color: #ff6347;
+  color: #000000;
+  transform: translateY(-1px);
 }
 
 .nav-link::after {
   content: "";
   display: block;
   height: 2px;
-  background-color: #ff6347;
+  background-color: #000000;
   width: 0;
   transition: width 0.3s ease;
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   left: 0;
 }
 
 .nav-link:hover::after {
   width: 100%;
 }
+
+/* ---- DROPDOWN STYLES ---- */
+.nav-item.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  min-width: 230px;
+  background-color: #FDF5E6;
+  border: 1px solid #E0DACA;
+  border-radius: 6px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  transform-origin: top center;
+}
+
+.nav-item.dropdown:hover>.dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+  position: relative;
+}
+
+.dropdown-item:not(:last-child)>.dropdown-link {
+  border-bottom: 1px solid #F0EAE0;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 4px 20px;
+  text-decoration: none;
+  color: #5D4037;
+  /* Darker brown for better contrast on beige */
+  font-family: "Space Grotesk", sans-serif;
+  /* CHANGED - Stylish Font */
+  font-size: 0.9rem;
+  /* Slightly adjusted size */
+  font-weight: 500;
+  /* CHANGED - Medium weight for dropdown */
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-link:hover {
+  background-color: #f7c98c;
+  /* Lighter orange hover for dropdown items */
+  color: #4A322A;
+  /* Darker text on hover for contrast */
+}
+
+.dropdown-item:hover>.dropdown-link,
+.dropdown-item>.dropdown-link:hover {
+  background-color: #f7c98c;
+  color: #4A322A;
+}
+
+/* Submenu Styles */
+.dropdown-submenu {
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  display: none;
+  position: absolute;
+  top: -6px;
+  left: 100%;
+  min-width: 210px;
+  background-color: #FDF5E6;
+  /* Consistent light background */
+  border: 1px solid #E0DACA;
+  border-radius: 6px;
+  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1002;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  transform: translateX(10px);
+  transform-origin: left center;
+}
+
+.dropdown-item:hover>.dropdown-submenu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.dropdown-submenu .dropdown-item:not(:last-child)>.dropdown-link {
+  border-bottom: 1px solid #F0EAE0;
+}
+
+/* 
+about */
+
+/* Custom Animations - Add to your main CSS file (e.g., index.css or App.css) */
+
+/* Fade In Down Animation */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-fade-in-down {
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Pop In Animation (for cards) */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.02) translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.custom-pop-in {
+  animation: popIn 0.5s ease-out forwards;
+  /* Important: For stagger effect, animation-delay will be set inline in JS/JSX */
+}
+
+/* Optional: Base styles if you are not using Tailwind for these specific elements */
+/* You might not need these if Tailwind is handling other styles */
+
+/* Example of how you might style a card if not using Tailwind's shadow/rounded utilities */
+/* .custom-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.custom-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+} */
 
 /* Right Section */
 .nav-right {
@@ -672,123 +873,199 @@ body {
   gap: 15px;
 }
 
-.icon,
-.menu-icon {
+.menu-icon-wrapper {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
   cursor: pointer;
-  color: #333;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.menu-icon-wrapper:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  /* Slightly more visible hover */
+}
+
+.menu-icon-svg {
+  color: #FFFFFF;
+  display: block;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+    /* CHANGED - Lighter orange for mobile, distinct but harmonious */
+    background-color: #F39C12;
+  }
+
   .nav-center {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 100%;
+    left: 0;
     right: 0;
-    background-color: #ffffff;
+    /* CHANGED - Mobile menu bg to match mobile navbar */
+    background-color: #F39C12;
     width: 100%;
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-in-out;
   }
 
   .nav-center.active {
     display: flex;
+    max-height: calc(100vh - 56px);
+    /* Adjust if navbar height changed */
+    overflow-y: auto;
+    padding-bottom: 10px;
   }
 
-  .menu-icon {
-    display: block;
-  }
-
-  .nav-right {
-    gap: 10px;
-  }
-}
-
-
-/* Menu Button (Hidden on Larger Screens) */
-.menu-button {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-}
-
-/* Responsive Design */
-
-/* Mobile View (max-width: 600px) */
-@media screen and (max-width: 600px) {
-  .navbar {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  /* .nav-link font changes will cascade here */
+  .nav-center .nav-link,
+  .nav-center .nav-item.dropdown>.nav-link {
     width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    text-align: left;
+    color: #FFFFFF;
+    border-bottom: 1px solid rgba(224, 142, 11, 0.7);
+    /* Adjusted border for new bg */
+  }
+
+  .nav-center .nav-link:hover,
+  .nav-center .nav-item.dropdown>.nav-link:hover {
+    background-color: #e08e0b;
+    /* Darker shade of mobile bg for hover */
+    transform: none;
+  }
+
+  .nav-center .nav-link::after {
+    display: none;
+  }
+
+  .nav-center .nav-link:last-of-type,
+  .nav-center .nav-item.dropdown:last-of-type>.nav-link {
+    border-bottom: none;
+  }
+
+  .menu-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Mobile Dropdown Specifics */
+  .nav-item.dropdown:hover>.dropdown-menu {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .nav-item.dropdown .dropdown-menu.mobile-active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    position: static;
+    /* CHANGED - Lighter shade for mobile dropdown section */
+    background-color: #f7c98c;
+    box-shadow: none;
+    border: none;
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+    transform: none;
+    transition: none;
+  }
+
+  /* .dropdown-link font changes will cascade here */
+  .nav-item.dropdown .dropdown-menu.mobile-active .dropdown-link {
+    color: #5D4037;
+    /* Darker text for readability */
+    padding: 10px 20px 10px 30px;
+    border-bottom: 1px solid rgba(224, 142, 11, 0.5);
+    /* Lighter border for mobile dropdown */
+  }
+
+  .nav-item.dropdown .dropdown-menu.mobile-active .dropdown-item:last-child>.dropdown-link {
+    border-bottom: none;
+  }
+
+
+  .dropdown-item:hover>.dropdown-submenu {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .dropdown-item .dropdown-submenu.mobile-active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    position: static;
+    /* CHANGED - Lighter, but distinct shade for sub-sub-menu */
+    background-color: #c7a369;
+    box-shadow: none;
+    border: none;
+    margin-left: 0;
+    padding: 0;
+    transform: none;
+  }
+
+  /* .dropdown-link font changes will cascade here */
+  .dropdown-item .dropdown-submenu.mobile-active .dropdown-link {
+    padding: 10px 20px 10px 45px;
+    color: #5D4037;
+    /* Darker text for readability */
+    border-bottom: 1px solid rgba(224, 142, 11, 0.4);
+    /* Lighter border */
+  }
+
+  .dropdown-item .dropdown-submenu.mobile-active .dropdown-item:last-child>.dropdown-link {
+    border-bottom: none;
+  }
+
+  .nav-link .dropdown-arrow,
+  .dropdown-link .dropdown-arrow {
+    float: right;
+    margin-left: 8px;
+    font-size: 0.8em;
+    transition: transform 0.2s ease;
+    color: #FFFFFF;
+    /* Ensure arrow is visible on mobile nav link */
+  }
+
+  .dropdown-menu.mobile-active .dropdown-link .dropdown-arrow {
+    color: #5D4037;
+    /* Arrow color for mobile dropdown items */
+  }
+
+  .dropdown-submenu.mobile-active .dropdown-link .dropdown-arrow {
+    color: #5D4037;
+    /* Arrow color for mobile sub-submenu items */
+  }
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .navbar {
+    padding: 12px 20px;
   }
 
   .nav-center {
-    flex-grow: 1;
-    text-align: center;
+    gap: 18px;
   }
 
-  .nav-links {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 10px 20px;
-    display: none;
-    /* Hidden by default for mobile */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .menu-button {
-    display: block;
-    /* Show menu button on mobile */
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-
-  .menu-active .nav-links {
-    display: flex;
-    /* Show links when menu is active */
-  }
-}
-
-/* Tablet View (601px to 992px) */
-@media screen and (min-width: 601px) and (max-width: 992px) {
-  .navbar {
-    padding: 15px 30px;
-  }
-
-  .nav-links {
-    gap: 15px;
-  }
-
-  .nav-links a {
-    font-size: 16px;
-  }
-}
-
-/* Desktop View (993px and up) */
-@media screen and (min-width: 993px) {
-  .navbar {
-    padding: 20px 40px;
-  }
-
-  .nav-links {
-    gap: 20px;
-  }
-
-  .nav-links a {
-    font-size: 14px;
-  }
-
-  .socialLogo {
-    width: 10vw;
-    height: 10vh;
+  /* .nav-link font changes will cascade here, adjust size if needed for tablet */
+  .nav-link {
+    font-size: 1rem;
+    /* Slightly smaller for tablets if needed */
   }
 }
 
@@ -1830,11 +2107,11 @@ dome spotolight
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #25D366;
+  background-color: #43d378;
   color: white;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  border-radius: 0%;
+  width: 70px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
