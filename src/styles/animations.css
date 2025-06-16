@@ -588,7 +588,6 @@ body {
 
 /* Navbar Base */
 .space-grotesk-font {
-  /* More specific class name if you want to apply it selectively */
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
 }
@@ -598,68 +597,106 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 12px 25px;
-  /* CHANGED - Lighter, vibrant orange for the main navbar */
-  background-color: #dfd8cd;
+  background-color: #ecc17b; /* Your vibrant orange */
   border-bottom: 2px solid #46423c;
-  /* Adjusted border to match new bg */
   color: #FFFFFF;
-  /* White text still looks good */
   position: sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
+  
   box-sizing: border-box;
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
-  /* Added transition for bg */
 }
 
 .navbar-scrolled {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-  /* Optional: slightly change background on scroll if desired */
-  /* background-color: #F39C12; */
 }
 
-/* Logo */
+/* --- Logo Section --- */
 .nav-left {
+  display: flex; 
+  align-items: center;
+}
+
+.logo-area-link { 
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 10px; 
+  text-decoration: none; 
 }
 
 .logo-image {
-  height: 40px;
+  height: 60px; /* INCREASED LOGO IMAGE SIZE */
   width: auto;
+  display: block; 
 }
 
-.logo-text {
-  font-family: "Space Grotesk", sans-serif;
-  /* Ensuring Space Grotesk */
-  font-size: 1.5rem;
-  font-weight: bold;
-  /* 700 */
-  text-decoration: none;
-  color: #FFFFFF;
+.logo-text-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 1; 
+  /* margin-top: -5px; /* Experiment with this for vertical alignment */
 }
 
-/* Center Section Links */
+.logo-text-main {
+  font-family: 'Dancing Script', cursive; 
+  font-size: 1.8rem;   
+  font-weight: 700;   
+  color: #383025;     
+  white-space: nowrap; 
+  letter-spacing: normal; 
+  line-height: 1;     
+}
+
+.logo-text-tagline {
+  font-family: "Space Grotesk", sans-serif; 
+  font-size: 0.8rem;   
+  font-weight: 800;   
+  color: #4A4A4A;     
+  white-space: nowrap; 
+  overflow: hidden; 
+  position: relative; 
+  min-height: 1.1em; 
+  letter-spacing: 1.2px; 
+  text-transform: uppercase; 
+  margin-top: 6px; 
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  background-color: #4A4A4A; 
+  width: 2px; 
+  height: 0.85em;        
+  margin-left: 3px; 
+  animation: blink-cursor 0.75s step-end infinite;
+  vertical-align: text-bottom; 
+}
+
+@keyframes blink-cursor {
+  from, to { background-color: transparent; }
+  50% { background-color: #4A4A4A; } 
+}
+
+
+/* --- Center Section Links --- */
 .nav-center {
   display: flex;
-  gap: 22px;
-  align-items: center;
+  gap: 22px; 
+  align-items: center; 
 }
 
 .nav-link {
   text-decoration: none;
-  color: #474230;
+  color: #474230; 
   font-family: "Space Grotesk", sans-serif;
-  /* CHANGED - Stylish Font */
   font-size: 1.05rem;
-  /* Slightly adjusted size for new font */
-  font-weight: 800;
-  /* CHANGED - Bolder */
+  font-weight: 800; 
   padding: 5px 0;
   position: relative;
   transition: color 0.3s ease, transform 0.2s ease;
+  display: flex; 
+  align-items: center; 
 }
 
 .nav-link:hover {
@@ -667,7 +704,7 @@ body {
   transform: translateY(-1px);
 }
 
-.nav-link::after {
+.nav-link::after { 
   content: "";
   display: block;
   height: 2px;
@@ -683,7 +720,19 @@ body {
   width: 100%;
 }
 
-/* ---- DROPDOWN STYLES ---- */
+/* Dropdown Arrow (for mobile) */
+.dropdown-arrow {
+  margin-left: 8px; 
+  font-size: 0.7em; 
+  display: inline-block; 
+}
+.submenu-arrow { 
+  margin-left: auto; 
+  padding-left: 8px; 
+}
+
+
+/* ---- DROPDOWN STYLES (Desktop) ---- */
 .nav-item.dropdown {
   position: relative;
 }
@@ -692,13 +741,13 @@ body {
   list-style: none;
   padding: 5px 0;
   margin: 0;
-  display: none;
+  display: none; 
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 8px); 
   left: 50%;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%); 
   min-width: 230px;
-  background-color: #FDF5E6;
+  background-color: #FDF5E6; 
   border: 1px solid #E0DACA;
   border-radius: 6px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
@@ -709,7 +758,7 @@ body {
   transform-origin: top center;
 }
 
-.nav-item.dropdown:hover>.dropdown-menu {
+.nav-item.dropdown:hover > .dropdown-menu {
   display: block;
   opacity: 1;
   visibility: visible;
@@ -720,51 +769,40 @@ body {
   position: relative;
 }
 
-.dropdown-item:not(:last-child)>.dropdown-link {
-  border-bottom: 1px solid #F0EAE0;
+.dropdown-item:not(:last-child) > .dropdown-link {
+  border-bottom: 1px solid #F0EAE0; 
 }
 
 .dropdown-link {
-  display: block;
-  padding: 4px 20px;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  padding: 8px 20px; 
   text-decoration: none;
-  color: #5D4037;
-  /* Darker brown for better contrast on beige */
+  color: #5D4037; 
   font-family: "Space Grotesk", sans-serif;
-  /* CHANGED - Stylish Font */
   font-size: 0.9rem;
-  /* Slightly adjusted size */
   font-weight: 500;
-  /* CHANGED - Medium weight for dropdown */
   white-space: nowrap;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .dropdown-link:hover {
-  background-color: #f7c98c;
-  /* Lighter orange hover for dropdown items */
-  color: #4A322A;
-  /* Darker text on hover for contrast */
+  background-color: #f7c98c; 
+  color: #4A322A; 
 }
 
-.dropdown-item:hover>.dropdown-link,
-.dropdown-item>.dropdown-link:hover {
-  background-color: #f7c98c;
-  color: #4A322A;
-}
-
-/* Submenu Styles */
+/* Submenu Styles (Desktop) */
 .dropdown-submenu {
   list-style: none;
   padding: 5px 0;
   margin: 0;
-  display: none;
+  display: none; 
   position: absolute;
-  top: -6px;
-  left: 100%;
+  top: -6px; 
+  left: 100%; 
   min-width: 210px;
   background-color: #FDF5E6;
-  /* Consistent light background */
   border: 1px solid #E0DACA;
   border-radius: 6px;
   box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1);
@@ -772,133 +810,55 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-  transform: translateX(10px);
+  transform: translateX(10px); 
   transform-origin: left center;
 }
 
-.dropdown-item:hover>.dropdown-submenu {
+.dropdown-item:hover > .dropdown-submenu {
   display: block;
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
 }
 
-.dropdown-submenu .dropdown-item:not(:last-child)>.dropdown-link {
+.dropdown-submenu .dropdown-item:not(:last-child) > .dropdown-link {
   border-bottom: 1px solid #F0EAE0;
 }
 
-/* 
-about */
 
-/* Custom Animations - Add to your main CSS file (e.g., index.css or App.css) */
-
-/* Fade In Down Animation */
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.custom-fade-in-down {
-  animation: fadeInDown 0.6s ease-out forwards;
-}
-
-/* Fade In Up Animation */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.custom-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Pop In Animation (for cards) */
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.95) translateY(10px);
-  }
-
-  70% {
-    opacity: 1;
-    transform: scale(1.02) translateY(0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.custom-pop-in {
-  animation: popIn 0.5s ease-out forwards;
-  /* Important: For stagger effect, animation-delay will be set inline in JS/JSX */
-}
-
-/* Optional: Base styles if you are not using Tailwind for these specific elements */
-/* You might not need these if Tailwind is handling other styles */
-
-/* Example of how you might style a card if not using Tailwind's shadow/rounded utilities */
-/* .custom-card {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-}
-
-.custom-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-} */
-
-/* Right Section */
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
+/* --- MOBILE STYLES --- */
 .menu-icon-wrapper {
-  display: none;
+  display: none; 
   background: none;
   border: none;
-  padding: 8px;
+  color: #474230; 
   cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
-
-.menu-icon-wrapper:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  /* Slightly more visible hover */
+  padding: 5px;
 }
 
 .menu-icon-svg {
-  color: #FFFFFF;
-  display: block;
+  display: block; 
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
+  .logo-text-main {
+    font-size: 1.9rem; 
+  }
+  .logo-text-tagline {
+    font-size: 0.7rem; 
+    letter-spacing: 1px;
+    margin-top: 4px; 
+  }
+  .logo-image {
+    height: 55px; /* ADJUSTED Mobile Logo Image Size */
+  }
+  .logo-area-link {
+    gap: 8px; 
+  }
+
   .navbar {
     padding: 10px 15px;
-    /* CHANGED - Lighter orange for mobile, distinct but harmonious */
-    background-color: #F39C12;
+    background-color: #ecc17b; 
   }
 
   .nav-center {
@@ -908,8 +868,7 @@ about */
     top: 100%;
     left: 0;
     right: 0;
-    /* CHANGED - Mobile menu bg to match mobile navbar */
-    background-color: #F39C12;
+    background-color: #F39C12; 
     width: 100%;
     padding: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
@@ -922,12 +881,10 @@ about */
   .nav-center.active {
     display: flex;
     max-height: calc(100vh - 56px);
-    /* Adjust if navbar height changed */
     overflow-y: auto;
     padding-bottom: 10px;
   }
 
-  /* .nav-link font changes will cascade here */
   .nav-center .nav-link,
   .nav-center .nav-item.dropdown>.nav-link {
     width: 100%;
@@ -936,13 +893,11 @@ about */
     text-align: left;
     color: #FFFFFF;
     border-bottom: 1px solid rgba(224, 142, 11, 0.7);
-    /* Adjusted border for new bg */
   }
 
   .nav-center .nav-link:hover,
   .nav-center .nav-item.dropdown>.nav-link:hover {
     background-color: #e08e0b;
-    /* Darker shade of mobile bg for hover */
     transform: none;
   }
 
@@ -956,12 +911,12 @@ about */
   }
 
   .menu-icon-wrapper {
-    display: flex;
+    display: flex; 
     align-items: center;
     justify-content: center;
   }
 
-  /* Mobile Dropdown Specifics */
+
   .nav-item.dropdown:hover>.dropdown-menu {
     display: none;
     opacity: 0;
@@ -973,7 +928,6 @@ about */
     opacity: 1;
     visibility: visible;
     position: static;
-    /* CHANGED - Lighter shade for mobile dropdown section */
     background-color: #f7c98c;
     box-shadow: none;
     border: none;
@@ -984,13 +938,10 @@ about */
     transition: none;
   }
 
-  /* .dropdown-link font changes will cascade here */
   .nav-item.dropdown .dropdown-menu.mobile-active .dropdown-link {
     color: #5D4037;
-    /* Darker text for readability */
     padding: 10px 20px 10px 30px;
     border-bottom: 1px solid rgba(224, 142, 11, 0.5);
-    /* Lighter border for mobile dropdown */
   }
 
   .nav-item.dropdown .dropdown-menu.mobile-active .dropdown-item:last-child>.dropdown-link {
@@ -1009,7 +960,6 @@ about */
     opacity: 1;
     visibility: visible;
     position: static;
-    /* CHANGED - Lighter, but distinct shade for sub-sub-menu */
     background-color: #c7a369;
     box-shadow: none;
     border: none;
@@ -1018,13 +968,10 @@ about */
     transform: none;
   }
 
-  /* .dropdown-link font changes will cascade here */
   .dropdown-item .dropdown-submenu.mobile-active .dropdown-link {
     padding: 10px 20px 10px 45px;
     color: #5D4037;
-    /* Darker text for readability */
     border-bottom: 1px solid rgba(224, 142, 11, 0.4);
-    /* Lighter border */
   }
 
   .dropdown-item .dropdown-submenu.mobile-active .dropdown-item:last-child>.dropdown-link {
@@ -1038,17 +985,14 @@ about */
     font-size: 0.8em;
     transition: transform 0.2s ease;
     color: #FFFFFF;
-    /* Ensure arrow is visible on mobile nav link */
   }
 
   .dropdown-menu.mobile-active .dropdown-link .dropdown-arrow {
     color: #5D4037;
-    /* Arrow color for mobile dropdown items */
   }
 
   .dropdown-submenu.mobile-active .dropdown-link .dropdown-arrow {
     color: #5D4037;
-    /* Arrow color for mobile sub-submenu items */
   }
 }
 
@@ -1062,166 +1006,259 @@ about */
     gap: 18px;
   }
 
-  /* .nav-link font changes will cascade here, adjust size if needed for tablet */
   .nav-link {
     font-size: 1rem;
-    /* Slightly smaller for tablets if needed */
   }
+  .logo-text-main {
+    font-size: 2.1rem; 
+  }
+  .logo-text-tagline {
+    font-size: 0.75rem; 
+    letter-spacing: 1px;
+  }
+  .logo-image {
+    height: 60px; /* ADJUSTED Tablet Logo Image Size */
+  }
+}
+
+/* Custom Animations */
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.custom-fade-in-down { animation: fadeInDown 0.6s ease-out forwards; }
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.custom-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+  70% { opacity: 1; transform: scale(1.02) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.custom-pop-in { animation: popIn 0.5s ease-out forwards; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.menu-icon-wrapper { 
+  display: none; 
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.menu-icon-wrapper:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.menu-icon-svg {
+  color: #FFFFFF; 
+  display: block;
 }
 
 /* WaveGrid  */
 
-/* Trending Section */
+/* Global Box Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* Trending Section Styles */
-/* Trending Section */
 .trending-section {
-  padding: 60px 0;
+  padding: 40px 0;
   background-color: #f9f9f9;
-  display: flex;
-  justify-content: center;
   width: 100%;
 }
 
 .containerm {
   width: 100%;
-  max-width: 1530px;
-  /* Set a maximum width for the container */
-  padding: 0 20px;
-  /* Padding for responsiveness */
+  max-width: 1530px; /* Desktop container width */
+  padding: 0 16px; /* Horizontal padding for the container */
   margin: 0 auto;
-  /* Center the container */
-}
-
-.title-section {
-  position: relative;
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-.title-section::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 4px;
-  background-color: #d7c8de;
-  top: 50%;
-  left: 0;
-  z-index: 1;
-}
-
-.section-title {
-  font-size: 36px;
-  font-weight: bold;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-  background-color: #f9f9f9;
-  /* Matches the section background */
-  display: inline-block;
-  padding: 0 20px;
-  color: #333;
-  letter-spacing: 1px;
 }
 
 .trending-items {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  /* Increased gap for better spacing */
+  flex-wrap: wrap; /* Items ko agli line mein wrap karega */
+  justify-content: center; /* Items ko line mein center karega */
+  gap: 20px; /* Items ke beech mein default gap (horizontal and vertical) */
+}
+
+.product-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Desktop: Width for each product item, matching image's w-56 (14rem = 224px) */
+  width: 224px;
 }
 
 .trending-item {
-  width: 220px;
+  width: 100%; /* Card apne wrapper ka poora width lega */
   background: white;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  /* Aapka specific bada radius. Agar card ki width 30rem se kam hai toh yeh semi-circle jaisa top dega. */
   border-radius: 15rem 15rem 10px 10px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  /* Center-align text */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Agar wrapper ki height alag ho toh card poori height le */
 }
 
 .trending-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-  /* Stronger shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.image-wrapper {
-  position: relative;
-  height: 200px;
-}
-
+/* Image styling for DESKTOP - Tailwind classes h-56 w-56 handle this */
 .trending-item img {
-  width: 100%;
-  /* height: 100%; */
-  object-fit: contain;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease;
-  border-top-left-radius: 15rem;
-  /* Ensure the image matches the container */
-  border-top-right-radius: 15rem;
-}
-
-.trending-item .hover-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.05);
-  /* Slight zoom effect */
-}
-
-.trending-item:hover .default-img {
-  opacity: 0;
-  transform: scale(0.95);
-  /* Shrink the default image on hover */
-}
-
-.trending-item:hover .hover-img {
-  opacity: 1;
-  transform: scale(1);
-  /* Reset scale on hover */
+  /* Tailwind h-56 w-56 (224px x 224px) classes image tag par lagi hain. */
+  /* Tailwind object-contain bhi image tag par hai. */
+  /* Tailwind bg-[#BFC6CA] bhi image tag par hai. */
+  /* Yeh custom border-radius (parent .trending-item ka) visual effect dega. */
+  margin: 0 auto; /* Image ko center karega agar card thoda चौड़ा ho */
 }
 
 .trending-item h3 {
-  font-size: 20px;
-  margin: 20px 0 10px;
+  font-size: 16px;
+  margin: 12px 10px 5px;
   color: #444;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  line-height: 1.3;
+  min-height: 42px; /* Approx 2 lines, text alignment ke liye */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Title ko 2 line tak limit karega */
+  -webkit-box-orient: vertical;
 }
 
 .trending-item p {
-  font-size: 16px;
+  font-size: 14px;
   color: #666;
-  padding: 0 15px 20px;
-  line-height: 1.5;
+  padding: 0 10px 12px;
+  line-height: 1.4;
+  margin-bottom: 0;
+  margin-top: auto; /* Price ko card ke neeche push karega */
 }
 
-@media (max-width: 768px) {
-  .trending-item {
-    width: 100%;
-    /* Full width for smaller screens */
-    max-width: 350px;
-    /* Optional max width for uniformity */
+.product-card-wrapper .btn {
+  margin-top: 10px; /* Card aur button ke beech space */
+  width: 90%;
+  max-width: 200px; /* Button ki max width */
+  padding: 8px 12px;
+}
+
+/* === Responsive Adjustments === */
+
+/* Tablet View (e.g., for 3-4 items per row, depending on tablet width) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .trending-items {
+    gap: 12px; /* Tablet par thoda kam gap */
+  }
+  .product-card-wrapper {
+    /* Approx 3 items for most tablets */
+    width: calc(33.333% - 8px); /* (100% - 2*12px)/3 */
+  }
+  .trending-item img {
+    /* Tailwind h-56 (224px) kafi bada ho sakta hai tablet cards ke liye */
+    height: 180px !important; /* Image area ki height kam kardi */
+    width: 100% !important; /* Image card ki poori width lega */
+    object-fit: contain !important; /* Ensure image is contained */
+  }
+  .trending-item h3 {
+    font-size: 14px;
+    min-height: 36px;
+  }
+  .trending-item p {
+    font-size: 13px;
   }
 }
 
-@media (max-width: 480px) {
-  .section-title {
-    font-size: 28px;
+
+@media (max-width: 768px) {
+  .trending-section {
+    padding: 20px 0; /* Mobile par kam padding */
+  }
+  .containerm {
+    padding: 0 8px; /* Mobile par container ki padding kam */
+  }
+  .trending-items {
+    gap: 10px; /* Mobile par items ke beech gap kam */
+  }
+
+  .product-card-wrapper {
+   
+    width: calc( (100% - (3 * 8px)) / 4 ); 
+   
+  }
+
+  .trending-item img {
+    /* Tailwind h-56 w-56 (224px x 224px) mobile ke liye bahut bade hain. */
+    /* Inhe override karna zaroori hai. */
+    width: 100% !important; /* Image card ki poori width lega */
+    height: 90px !important; /* Image area ki height bahut kam karni padegi. Adjust karein. */
+                               /* Aapke QR code screenshot mein image area lamba dikhta hai,
+                                  isliye height ko width se thoda zyada rakha hai relative to card.
+                                  Asal mein, agar card 80px चौड़ा hai, to 90px height ajeeb lagega.
+                                  Aap ise `height: auto !important;` bhi kar sakte hain aspect ratio ke liye,
+                                  ya phir card ki width ke proportion mein set karein, jaise `height: 70px !important;` */
+    object-fit: contain !important; /* Image ko is area mein fit karega */
+    /* bg-[#BFC6CA] aur rounded-t-xl classes image tag par hain, wo yahan bhi apply hongi */
   }
 
   .trending-item h3 {
-    font-size: 18px;
+    font-size: 10px; /* Title font bahut chhota karna padega */
+    min-height: 24px; /* 2 lines ke liye approx height */
+    margin: 5px 3px 2px; /* Margins bhi kam */
+    line-height: 1.2;
+    -webkit-line-clamp: 2;
   }
 
   .trending-item p {
-    font-size: 14px;
+    font-size: 9px; /* Price font aur bhi chhota */
+    padding: 0 3px 5px; /* Padding kam */
+  }
+
+  .product-card-wrapper .btn {
+    font-size: 9px; /* Button text bhi chhota */
+    padding: 4px 6px; /* Button padding kam */
+    margin-top: 5px; /* Button aur card ke beech space kam */
+    width: 100%; /* Button card ki poori wrapper width le le */
+  }
+}
+
+/* Very Small Mobile View (optional, < 360px width phones) */
+/* Agar 4 items bahut zyada chhote lag rahe hon bahut hi chhoti screens par */
+@media (max-width: 359px) {
+  .product-card-wrapper {
+    /* Yahan aap 2 ya 3 items per row kar sakte hain agar 4 bahut congested lagein */
+    /* For 3 items: width: calc( (100% - (2 * 8px)) / 3 ); */ /* Approx 33.33% - 5.33px */
+    /* For 2 items: width: calc( (100% - (1 * 8px)) / 2 ); */ /* Approx 50% - 4px */
+    /* Abhi ke liye 4 hi rakhte hain, jaisa aapne kaha */
+  }
+  .trending-item img {
+      height: 75px !important; /* Aur chhota image area */
+  }
+   .trending-item h3 {
+    font-size: 9px;
+    min-height: 20px;
+  }
+  .trending-item p {
+    font-size: 8px;
   }
 }
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { Menu } from 'lucide-react';
-import navlogo1 from "../../pictures/navlogo.png"; // Make sure this path is correct
 import config from "../data/config";
 
 const Navbar = () => {
@@ -14,6 +13,13 @@ const Navbar = () => {
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
 
+  // --- Start: Typewriter State ---
+  const [taglineText, setTaglineText] = useState('');
+  const fullTagline = "LED lighting";
+  const [taglineIndex, setTaglineIndex] = useState(0);
+  const [isTaglineDeleting, setIsTaglineDeleting] = useState(false);
+  // --- End: Typewriter State ---
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -21,6 +27,44 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // --- Start: Typewriter Effect ---
+  useEffect(() => {
+    const typingSpeed = 150; // milliseconds per character
+    const deletingSpeed = 100; // milliseconds per character
+    const pauseDuration = 2000; // Pause after typing/deleting
+
+    const handleTyping = () => {
+      if (isTaglineDeleting) {
+        if (taglineIndex > 0) {
+          setTaglineText((prev) => prev.substring(0, prev.length - 1));
+          setTaglineIndex((prev) => prev - 1);
+        } else {
+          // Finished deleting, pause then start typing again
+          setIsTaglineDeleting(false);
+          // No need to reset taglineIndex here, it will be handled by the typing part
+        }
+      } else { // Typing
+        if (taglineIndex < fullTagline.length) {
+          setTaglineText((prev) => prev + fullTagline.charAt(taglineIndex));
+          setTaglineIndex((prev) => prev + 1);
+        } else {
+          // Finished typing, pause then start deleting
+          setTimeout(() => setIsTaglineDeleting(true), pauseDuration);
+        }
+      }
+    };
+
+    let timer;
+    if (isTaglineDeleting && taglineIndex === 0) { // Special pause after deleting before re-typing
+        timer = setTimeout(handleTyping, pauseDuration);
+    } else {
+        timer = setTimeout(handleTyping, isTaglineDeleting ? deletingSpeed : typingSpeed);
+    }
+
+    return () => clearTimeout(timer);
+  }, [taglineIndex, isTaglineDeleting, fullTagline]); // Removed taglineText from deps to avoid issues
+  // --- End: Typewriter Effect ---
 
   const fetchCategories = async () => {
     try {
@@ -33,16 +77,19 @@ const Navbar = () => {
       const data = await response.json();
       if (data.status && data.categories) {
         setCategories(data.categories);
+      } else {
+        setCategories([]);
       }
     } catch (err) {
       console.error("Error fetching categories:", err);
+      setCategories([]);
     } finally {
       setLoading(false);
     }
   };
 
   const fetchSubCategories = async (catId) => {
-    if (!subCategories[catId]) {
+    if (!subCategories[catId] || subCategories[catId].length === 0) {
       try {
         const response = await fetch(`${config.apiEndpoint}/open/sub-category-list-all`, {
           method: "POST",
@@ -52,9 +99,12 @@ const Navbar = () => {
         const data = await response.json();
         if (data.status && data.subcategories) {
           setSubCategories((prev) => ({ ...prev, [catId]: data.subcategories }));
+        } else {
+          setSubCategories((prev) => ({ ...prev, [catId]: [] }));
         }
       } catch (err) {
         console.error("Error fetching subcategories for " + catId + ":", err);
+        setSubCategories((prev) => ({ ...prev, [catId]: [] }));
       }
     }
   };
@@ -69,20 +119,20 @@ const Navbar = () => {
       setActiveMobileSubmenu(null);
     } else {
       setActiveMobileDropdown(categoryId);
-      if (categoryId === 'main-categories' && categories.length > 0) {
-        // No specific fetch needed here unless categories themselves are dynamic per click
-      }
       setActiveMobileSubmenu(null);
     }
   };
 
-  const toggleMobileSubmenu = (subCatParentId, event) => {
+  const toggleMobileSubmenu = (category, event) => {
     event.stopPropagation();
-    if (activeMobileSubmenu === subCatParentId) {
+    const catId = category.catId;
+    if (activeMobileSubmenu === catId) {
       setActiveMobileSubmenu(null);
     } else {
-      setActiveMobileSubmenu(subCatParentId);
-      fetchSubCategories(subCatParentId); // Fetch subcategories if not already loaded
+      setActiveMobileSubmenu(catId);
+      if (!subCategories[catId] || subCategories[catId].length === 0) {
+        fetchSubCategories(catId);
+      }
     }
   };
 
@@ -94,22 +144,48 @@ const Navbar = () => {
     }
   };
 
+  const handleCategoryLinkClick = (e, category) => {
+    if (window.innerWidth <= 768) {
+      fetchSubCategories(category.catId).then(() => {});
+      setTimeout(() => {
+        const currentSubCats = subCategories[category.catId];
+        if (currentSubCats && currentSubCats.length > 0) {
+          e.preventDefault();
+          toggleMobileSubmenu(category, e);
+        } else {
+          handleMenuLinkClick();
+        }
+      }, 100);
+    } else {
+      handleMenuLinkClick();
+    }
+  };
+
+
+
   return (
     <>
-      {/* Announcement Bar REMOVED */}
-
-      {/* Navbar: Added space-grotesk-font class for font context if needed, though individual elements set it */}
       <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""} space-grotesk-font`}>
         <div className="nav-left">
-          <img src={navlogo1} alt="White Light Logo" className="logo-image" />
-          <Link to="/" className="logo-text text-black" onClick={handleMenuLinkClick}>
-            White Light
+          {/* Link wraps the image and text to make the whole logo area clickable */}
+          <Link to="/" onClick={handleMenuLinkClick} className="logo-area-link">
+            <img
+              src="/images/logo.PNG" // UPDATED: Path to logo.PNG in public/images/
+              alt="White Light Logo"
+              className="logo-image"
+            />
+            <div className="logo-text-container">
+              <span className="logo-text-main">WhiteLight</span>
+              <span className="logo-text-tagline">
+                {taglineText}
+                <span className="typewriter-cursor"></span> {/* Static element for cursor via CSS */}
+              </span>
+            </div>
           </Link>
         </div>
 
         <div className={`nav-center ${menuOpen ? "active" : ""}`}>
           <Link to="/" className="nav-link" onClick={handleMenuLinkClick}>Home</Link>
-
           <div
             className="nav-item dropdown"
             onMouseEnter={() => !menuOpen && setHoveredCategory('main-categories')}
@@ -117,7 +193,7 @@ const Navbar = () => {
           >
             <Link
               to="/#"
-              className="nav-link"
+              className="nav-link categories-main-link"
               onClick={(e) => {
                 if (window.innerWidth <= 768) {
                   e.preventDefault();
@@ -125,8 +201,8 @@ const Navbar = () => {
                 }
               }}
             >
-              Categories
-              {window.innerWidth <= 768 && (categories.length > 0) && (
+              Products
+              {window.innerWidth <= 768 && (categories.length > 0 || loading) && (
                 <span className="dropdown-arrow">{activeMobileDropdown === 'main-categories' ? '▲' : '▼'}</span>
               )}
             </Link>
@@ -142,33 +218,22 @@ const Navbar = () => {
                       fetchSubCategories(category.catId);
                     }
                   }}
-                  onMouseLeave={() => !menuOpen && setHoveredCategory('main-categories')}
+                  onMouseLeave={() => {
+                    if (!menuOpen) {
+                      setHoveredCategory('main-categories');
+                    }
+                  }}
                 >
                   <Link
                     to={`/sub-categories/${category.catId}`}
                     className="dropdown-link"
-                    onClick={(e) => {
-                      if (window.innerWidth <= 768) {
-                        // Check if this category has subcategories before deciding to toggle or navigate
-                        fetchSubCategories(category.catId); // Ensure subcategories are fetched/checked
-                        // A short delay might be needed if fetchSubCategories is slow and subCategories[category.catId] isn't updated immediately
-                        setTimeout(() => {
-                          if (subCategories[category.catId] && subCategories[category.catId].length > 0) {
-                            e.preventDefault();
-                            toggleMobileSubmenu(category.catId, e);
-                          } else {
-                            handleMenuLinkClick();
-                          }
-                        }, 50); // Small timeout to allow state to potentially update
-                      }
-                    }}
+                    onClick={(e) => handleCategoryLinkClick(e, category)}
                   >
                     {category.title}
                     {window.innerWidth <= 768 && (subCategories[category.catId] && subCategories[category.catId].length > 0) && (
                       <span className="dropdown-arrow submenu-arrow">{activeMobileSubmenu === category.catId ? '▲' : '▼'}</span>
                     )}
                   </Link>
-
                   {((hoveredCategory === category.catId && !menuOpen) || (menuOpen && activeMobileSubmenu === category.catId)) &&
                     subCategories[category.catId] && subCategories[category.catId].length > 0 && (
                       <ul className={`dropdown-submenu ${menuOpen && activeMobileSubmenu === category.catId ? 'mobile-active' : ''}`}>
@@ -192,7 +257,6 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-
           <Link to="/about-us" className="nav-link" onClick={handleMenuLinkClick}>About</Link>
           <Link to="/contact-us" className="nav-link" onClick={handleMenuLinkClick}>Contact Us</Link>
         </div>

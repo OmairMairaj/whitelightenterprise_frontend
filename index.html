@@ -1,16 +1,25 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="" href="123.png" />
+     <meta charset="UTF-8" />
+    <!-- Ensure your favicon "123.png" is directly in the public folder -->
+    <link rel="icon" type="image/png" href="/123.png" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>whitelight</title>
+
+    <!-- Preconnect links for Google Fonts (good for performance) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">    
+
+    <!-- Consolidated Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Oswald:wght@700&family=Russo+One&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    
+    <!-- Vite serves the 'public' directory at the root, so direct paths are used -->
+    <!-- Make sure logo192.png and manifest.json are in your 'public' folder -->
+    <link rel="apple-touch-icon" href="/logo192.png" /> 
+    <link rel="manifest" href="/manifest.json" />
   </head>
   <body>
-    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

@@ -58,7 +58,7 @@ const Categories = () => {
 
   return (
     <div className="px-2 sm:px-2 lg:px-16">
-      <div className="text-center text-2xl font-bold mt-8 mb-8">Categories</div>
+      <div className="text-center text-2xl font-bold mt-8 mb-8">Product Categories</div>
 
       {loading ? (
         <div className="text-center">Loading...</div>
