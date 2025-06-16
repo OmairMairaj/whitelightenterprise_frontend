@@ -29,7 +29,7 @@ const WaveGrid = () => {
           <h2 className="section-title text-2xl md:text-3xl lg:text-4xl font-bold text-center">Trending Now</h2>
         </div>
 
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 justify-center mt-4">
           {trendingData.map((item, index) => (
             <div key={index}>
               <div className="relative overflow-hidden rounded-t-[50%] shadow">

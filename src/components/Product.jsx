@@ -181,7 +181,7 @@ const Product = () => {
   if (!product) {
     return (
       <div style={{ backgroundColor: THEME_COLOR_BACKGROUND_LIGHT, color: THEME_COLOR_TEXT_DARK }}
-           className="flex items-center justify-center min-h-screen text-xl px-4 text-center">
+        className="flex items-center justify-center min-h-screen text-xl px-4 text-center">
         {message || "Loading product data..."}
       </div>
     );
@@ -203,13 +203,13 @@ const Product = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div style={{ backgroundColor: THEME_COLOR_CONTENT_BG }}
-             className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 p-4 md:p-6 rounded-lg shadow-xl">
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 p-4 md:p-6 rounded-lg shadow-xl">
 
           {/* Left Column */}
           <div className="space-y-3">
             <div
-                 style={{ borderColor: THEME_COLOR_BORDER, backgroundColor: THEME_COLOR_IMAGE_CONTAINER_BG }}
-                 className="w-full h-72 sm:h-80 md:h-[400px] overflow-hidden rounded-lg border shadow-lg group relative flex items-center justify-center">
+              style={{ borderColor: THEME_COLOR_BORDER, backgroundColor: THEME_COLOR_IMAGE_CONTAINER_BG }}
+              className="w-full h-72 sm:h-80 md:h-[400px] overflow-hidden rounded-lg border shadow-lg group relative flex items-center justify-center">
               <img
                 src={mainImageToDisplaySrc}
                 alt={mainImageCaption || product.title}
@@ -249,16 +249,16 @@ const Product = () => {
                     <button
                       key={`thumb-${index}-${imgObj.img}`}
                       onClick={() => goToImage(index)}
-                      style={currentImageIndex === index ? { borderColor: THEME_COLOR_PRIMARY_ACCENT, ringColor: THEME_COLOR_PRIMARY_ACCENT } : {borderColor: 'transparent'}}
+                      style={currentImageIndex === index ? { borderColor: THEME_COLOR_PRIMARY_ACCENT, ringColor: THEME_COLOR_PRIMARY_ACCENT } : { borderColor: 'transparent' }}
                       className={`flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 p-0.5 border-2 rounded-md
                                   transition-all duration-200 ease-in-out transform
                                   focus:outline-none focus:ring-1 focus:ring-offset-1
                                   hover:scale-105 hover:shadow-sm
                                   active:scale-95
                                   ${currentImageIndex === index
-                                    ? `ring-2 ring-offset-1 scale-100 shadow-md opacity-100`
-                                    : `opacity-70 hover:opacity-100 hover:border-[${THEME_COLOR_PRIMARY_ACCENT}]`
-                                  }`}
+                          ? `ring-2 ring-offset-1 scale-100 shadow-md opacity-100`
+                          : `opacity-70 hover:opacity-100 hover:border-[${THEME_COLOR_PRIMARY_ACCENT}]`
+                        }`}
                       aria-label={`View image ${index + 1} - ${imgObj.caption || ''}`}
                     >
                       <img
@@ -272,15 +272,15 @@ const Product = () => {
               </div>
             )}
             {allImages.length === 0 && (
-                 <div style={{ borderColor: THEME_COLOR_BORDER, color: THEME_COLOR_TEXT_DARK }}
-                    className="h-72 sm:h-80 md:h-[400px] w-full flex items-center justify-center text-center p-4 rounded-lg border bg-gray-50 opacity-70">
-                    No product images available.
-                 </div>
+              <div style={{ borderColor: THEME_COLOR_BORDER, color: THEME_COLOR_TEXT_DARK }}
+                className="h-72 sm:h-80 md:h-[400px] w-full flex items-center justify-center text-center p-4 rounded-lg border bg-gray-50 opacity-70">
+                No product images available.
+              </div>
             )}
           </div>
 
           {/* Right Column */}
-           <div className="space-y-6 flex flex-col">
+          <div className="space-y-6 flex flex-col">
             <div> {/* Product Info */}
               <h1 style={{ color: THEME_COLOR_PRIMARY_ACCENT }} className="text-3xl font-bold sm:text-4xl">
                 {product.title}
@@ -290,13 +290,13 @@ const Product = () => {
                   ₹{product.price}
                 </span>
                 {product.originalPrice && product.originalPrice > product.price && (
-                    <span className="text-lg text-gray-500 line-through">
-                        ₹{product.originalPrice}
-                    </span>
+                  <span className="text-lg text-gray-500 line-through">
+                    ₹{product.originalPrice}
+                  </span>
                 )}
-                {product.discount && product.discount > 0 && ( 
+                {product.discount && product.discount > 0 && (
                   <span style={{ backgroundColor: THEME_COLOR_BUTTON, color: THEME_COLOR_TEXT_ON_DARK }}
-                        className="text-md font-semibold px-2.5 py-1 rounded-md shadow-sm">
+                    className="text-md font-semibold px-2.5 py-1 rounded-md shadow-sm">
                     {product.discount}% OFF
                   </span>
                 )}
@@ -306,9 +306,8 @@ const Product = () => {
                 <div className="relative mt-4">
                   <div
                     style={{ color: THEME_COLOR_TEXT_DARK }}
-                    className={`prose prose-sm sm:prose-base max-w-none opacity-90 leading-relaxed transition-all duration-300 ease-in-out ${
-                      !isExpanded ? 'line-clamp-3 overflow-hidden' : 'max-h-[1000px]'
-                    }`}
+                    className={`htmldesc prose prose-sm sm:prose-base max-w-none opacity-90 leading-relaxed transition-all duration-300 ease-in-out ${!isExpanded ? 'line-clamp-3 overflow-hidden' : 'max-h-[1000px]'
+                      }`}
                     dangerouslySetInnerHTML={{ __html: product.shortDescription }}
                   />
                   <button
@@ -324,9 +323,9 @@ const Product = () => {
               {product.availability && (
                 <div className="mt-4 space-y-1">
                   <h2 style={{ color: THEME_COLOR_TEXT_DARK }}
-                      className="text-lg font-semibold">Availability</h2>
+                    className="text-lg font-semibold">Availability</h2>
                   <p style={{ color: THEME_COLOR_TEXT_DARK }}
-                     className="opacity-80">In Stock</p>
+                    className="opacity-80">In Stock</p>
                 </div>
               )}
             </div>
@@ -366,16 +365,16 @@ const Product = () => {
             </div>
 
             {showEmailForm && (
-               <div style={{ backgroundColor: THEME_COLOR_BACKGROUND_LIGHT, borderColor: THEME_COLOR_BORDER }}
-                   className="mt-6 p-4 md:p-6 border rounded-lg shadow-sm">
+              <div style={{ backgroundColor: THEME_COLOR_BACKGROUND_LIGHT, borderColor: THEME_COLOR_BORDER }}
+                className="mt-6 p-4 md:p-6 border rounded-lg shadow-sm">
                 <h3 style={{ color: THEME_COLOR_TEXT_DARK }}
-                    className="text-lg font-semibold mb-3">
+                  className="text-lg font-semibold mb-3">
                   Enter your email to proceed
                 </h3>
                 <form onSubmit={handleSubmitEmail} className="space-y-4">
                   <div>
                     <label htmlFor="email" style={{ color: THEME_COLOR_TEXT_DARK }}
-                           className="block text-sm font-medium mb-1">
+                      className="block text-sm font-medium mb-1">
                       Email address
                     </label>
                     <input
@@ -385,8 +384,8 @@ const Product = () => {
                       className={`w-full px-4 py-2.5 border rounded-lg
                                  text-base placeholder-gray-400
                                  focus:outline-none focus:ring-2 transition-colors duration-150`}
-                      onFocus={(e) => { const target = e.currentTarget; target.style.borderColor = THEME_COLOR_PRIMARY_ACCENT; target.style.boxShadow = `0 0 0 2px ${THEME_COLOR_PRIMARY_ACCENT}40`;}}
-                      onBlur={(e) => {const target = e.currentTarget; target.style.borderColor = THEME_COLOR_BORDER; target.style.boxShadow = 'none';}}
+                      onFocus={(e) => { const target = e.currentTarget; target.style.borderColor = THEME_COLOR_PRIMARY_ACCENT; target.style.boxShadow = `0 0 0 2px ${THEME_COLOR_PRIMARY_ACCENT}40`; }}
+                      onBlur={(e) => { const target = e.currentTarget; target.style.borderColor = THEME_COLOR_BORDER; target.style.boxShadow = 'none'; }}
                       required
                     />
                   </div>
@@ -409,9 +408,9 @@ const Product = () => {
             {message && (
               <div
                 style={message.toLowerCase().includes('failed') || message.toLowerCase().includes('not configured') || message.toLowerCase().includes('error')
-                         ? { backgroundColor: THEME_COLOR_ERROR_BG, color: THEME_COLOR_ERROR_TEXT, borderColor: THEME_COLOR_ERROR_TEXT }
-                         : { backgroundColor: THEME_COLOR_SUCCESS_BG, color: THEME_COLOR_SUCCESS_TEXT, borderColor: THEME_COLOR_SUCCESS_TEXT }
-                       }
+                  ? { backgroundColor: THEME_COLOR_ERROR_BG, color: THEME_COLOR_ERROR_TEXT, borderColor: THEME_COLOR_ERROR_TEXT }
+                  : { backgroundColor: THEME_COLOR_SUCCESS_BG, color: THEME_COLOR_SUCCESS_TEXT, borderColor: THEME_COLOR_SUCCESS_TEXT }
+                }
                 className="mt-4 p-3 rounded-lg text-sm font-medium border opacity-90"
               >
                 {message}
@@ -422,22 +421,22 @@ const Product = () => {
 
         {specs && specs.length > 0 && (
           <div style={{ backgroundColor: THEME_COLOR_CONTENT_BG, borderColor: THEME_COLOR_BORDER }}
-               className="w-full max-w-7xl mx-auto py-8 mt-8 shadow-xl rounded-lg p-4 md:p-6">
+            className="w-full max-w-7xl mx-auto py-8 mt-8 shadow-xl rounded-lg p-4 md:p-6">
             <div className="space-y-3">
               <h2 style={{ color: THEME_COLOR_TEXT_DARK, borderColor: THEME_COLOR_PRIMARY_ACCENT }}
-                  className="text-2xl font-semibold border-b-2 pb-2">
+                className="text-2xl font-semibold border-b-2 pb-2">
                 Specifications
               </h2>
               <div style={{ borderColor: THEME_COLOR_BORDER }}
-                   className="overflow-x-auto rounded-md border shadow-sm">
+                className="overflow-x-auto rounded-md border shadow-sm">
                 <table className="min-w-full text-sm">
                   <tbody style={{ color: THEME_COLOR_TEXT_DARK }}>
                     {specs.map(({ key, value }, idx) => (
                       <tr key={`${key}-${idx}`} style={idx % 2 !== 0 ? { backgroundColor: THEME_COLOR_BACKGROUND_LIGHT, opacity: 0.9 } : { backgroundColor: THEME_COLOR_CONTENT_BG }}
-                          className={`border-b last:border-b-0`}
+                        className={`border-b last:border-b-0`}
                       >
                         <td style={{ borderColor: THEME_COLOR_BORDER }}
-                            className="font-semibold px-3 py-2.5 sm:px-4 sm:py-3 border-r w-1/3 sm:w-1/4 whitespace-nowrap">{key}</td>
+                          className="font-semibold px-3 py-2.5 sm:px-4 sm:py-3 border-r w-1/3 sm:w-1/4 whitespace-nowrap">{key}</td>
                         <td className="px-3 py-2.5 sm:px-4 sm:py-3">{value}</td>
                       </tr>
                     ))}
