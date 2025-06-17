@@ -6,24 +6,24 @@ import OwlCarousel from "react-owl-carousel";
 const testimonialsData = [
   {
     id: "review-1",
-    imgSrc: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=120&h=120&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-    name: "R",
+    imgSrc: "/images/r.jpeg", // Updated image path
+    name: "Ravi k.",
     project: "Corporate Office Project",
     description:
       "Stunning, energy-efficient LEDs for our office. Professional & hassle-free. Highly recommend WhiteLight!",
   },
   {
     id: "review-2",
-    imgSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-    name: "P",
+    imgSrc: "/images/t.jpeg", // Updated image path
+    name: "Trisha Patel",
     project: "Residential Lighting",
     description:
       "Our home's lighting is transformed! Elegant, efficient LEDs. Exceptional customer service. Extremely satisfied.",
   },
   {
     id: "review-3",
-    imgSrc: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&h=120&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-    name: "A.",
+    imgSrc: "/images/a.jpeg", // Updated image path
+    name: "Anil.",
     project: "Highway Lighting",
     description:
       "WhiteLight's LEDs greatly improved road safety. Excellent support and high-quality products! Thank you!",
@@ -43,13 +43,13 @@ interface ReviewItemProps {
 }
 
 const ReviewItem: React.FC<ReviewItemProps> = ({ testimonial }) => {
-  const QUOTE_COLOR = "text-amber-400"; 
+  const QUOTE_COLOR = "text-amber-400";
 
   return (
     // Reduced py on .item further
     <div className="item py-2 px-2 sm:px-4"> {/* Added horizontal padding control for item */}
       {/* Card: Increased max-width, reduced min-height, reduced padding, adjusted image */}
-      <div className={`relative bg-white rounded-xl shadow-xl w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto p-4 pt-8 text-center min-h-[190px] sm:min-h-[200px] testimonial-card-unique border-t-4 border-amber-500`}>
+      <div className={`relative bg-white rounded-xl shadow-xl w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto p-4 pt-8 text-center min-h-[190px] sm:min-h-[200px] testimonial-card-unique border-t-4 border-amber-500 mt-4`}>
         {/* Image: Smaller, adjusted top positioning */}
         <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 z-10">
           <img
@@ -58,7 +58,7 @@ const ReviewItem: React.FC<ReviewItemProps> = ({ testimonial }) => {
             className="w-full h-full rounded-full object-cover border-2 sm:border-4 border-white shadow-md" // Slightly thinner border on smallest screens
           />
         </div>
-        
+
         {/* Name/Project: Reduced margin-bottom */}
         <div className="mt-1 mb-2">
           <h3 className={`text-md sm:text-lg font-bold text-amber-600`}>{testimonial.name}</h3>
@@ -68,7 +68,7 @@ const ReviewItem: React.FC<ReviewItemProps> = ({ testimonial }) => {
         <div className="relative text-neutral-700 text-xs sm:text-sm leading-normal sm:leading-relaxed">
           {/* Quotes: Smaller, adjusted positioning slightly */}
           <span className={`absolute -top-1 -left-0 text-4xl ${QUOTE_COLOR} opacity-40 font-serif select-none`}>“</span>
-          <p 
+          <p
             className="px-2 sm:px-4" // Reduced horizontal padding for text
             key={testimonial.id}
           >
@@ -86,13 +86,13 @@ const Review: React.FC = () => {
   const options = {
     items: 1,
     loop: true,
-    margin: 10, 
-    nav: false, 
+    margin: 10,
+    nav: false,
     dots: true,
     autoplay: true,
     autoplayTimeout: 5000,
     autoplayHoverPause: true,
-    smartSpeed: 600, 
+    smartSpeed: 600,
   };
 
   if (testimonialsData.length === 0) {
@@ -112,13 +112,13 @@ const Review: React.FC = () => {
             Hear directly from those who've experienced the WhiteLight difference.
           </p>
         </div>
-        
+
         {/* Carousel Container: Increased max-width significantly */}
-        <div className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto"> 
-          <OwlCarousel 
-              className="owl-theme" 
-              {...options}
-              key={`owl-single-review-${testimonialsData.length}`} 
+        <div className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
+          <OwlCarousel
+            className="owl-theme"
+            {...options}
+            key={`owl-single-review-${testimonialsData.length}`}
           >
             {testimonialsData.map((testimonial) => (
               <ReviewItem

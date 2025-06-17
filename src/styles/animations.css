@@ -638,7 +638,6 @@ body {
   display: flex;
   flex-direction: column;
   line-height: 1;
-  /* margin-top: -5px; /* Experiment with this for vertical alignment */
 }
 
 .logo-text-main {
@@ -729,7 +728,7 @@ body {
   width: 100%;
 }
 
-/* Dropdown Arrow (for mobile) */
+/* Dropdown Arrow (Global Style) */
 .dropdown-arrow {
   margin-left: 8px;
   font-size: 0.7em;
@@ -848,6 +847,7 @@ body {
 
 .menu-icon-svg {
   display: block;
+  color: #FFFFFF;
 }
 
 @media (max-width: 768px) {
@@ -863,7 +863,6 @@ body {
 
   .logo-image {
     height: 55px;
-    /* ADJUSTED Mobile Logo Image Size */
   }
 
   .logo-area-link {
@@ -899,14 +898,31 @@ body {
     padding-bottom: 10px;
   }
 
-  .nav-center .nav-link,
-  .nav-center .nav-item.dropdown>.nav-link {
+  /* === CSS MODIFICATION START === */
+  /* Yeh rule .nav-center ke andar har direct child (<a> ya <div>) par apply hoga */
+  .nav-center.active>* {
     width: 100%;
+    /* Ensure direct children take full width */
+    box-sizing: border-box;
+    /* Padding ko width mein shamil karega */
+  }
+
+  /* === CSS MODIFICATION END === */
+
+
+  /* Mobile mein sabhi links (Home, Products, About, etc.) ke liye styling */
+  .nav-center .nav-link,
+  /* Yeh <a> tags hain */
+  .nav-center .nav-item.dropdown>.nav-link {
+    /* Yeh Products wala <a> tag hai */
+    width: 100%;
+    /* Yeh pehle se tha, lekin upar wale rule se confirm ho jayega */
     padding: 12px 20px;
     box-sizing: border-box;
     text-align: left;
     color: #FFFFFF;
     border-bottom: 1px solid rgba(224, 142, 11, 0.7);
+    /* display: flex; aur align-items: center; global .nav-link se inherit hoga */
   }
 
   .nav-center .nav-link:hover,
@@ -921,15 +937,24 @@ body {
 
   .nav-center .nav-link:last-of-type,
   .nav-center .nav-item.dropdown:last-of-type>.nav-link {
+    /* Agar Products aakhri item ho */
     border-bottom: none;
   }
 
+  /* Agar Products aakhri item nahi hai, toh .nav-item.dropdown par border-bottom aana chahiye */
+  /* Lekin woh uske andar wale .nav-link par hai, toh woh theek hai */
+
+
   .menu-icon-wrapper {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
   }
-
 
   .nav-item.dropdown:hover>.dropdown-menu {
     display: none;
@@ -992,21 +1017,27 @@ body {
     border-bottom: none;
   }
 
-  .nav-link .dropdown-arrow,
-  .dropdown-link .dropdown-arrow {
-    float: right;
-    margin-left: 8px;
+  /* Mobile menu ke andar ke dropdown arrows ki styling */
+  .nav-link>.dropdown-arrow,
+  .dropdown-link>.dropdown-arrow {
+    margin-left: auto;
+    margin-right: 0;
+    padding-left: 5px;
     font-size: 0.8em;
     transition: transform 0.2s ease;
     color: #FFFFFF;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-shrink: 0;
   }
 
-  .dropdown-menu.mobile-active .dropdown-link .dropdown-arrow {
-    color: #5D4037;
+  .dropdown-menu.mobile-active .dropdown-link>.dropdown-arrow {
+    color: #5D4037 !important;
   }
 
-  .dropdown-submenu.mobile-active .dropdown-link .dropdown-arrow {
-    color: #5D4037;
+  .dropdown-submenu.mobile-active .dropdown-link>.dropdown-arrow {
+    color: #5D4037 !important;
   }
 }
 
@@ -1035,7 +1066,6 @@ body {
 
   .logo-image {
     height: 60px;
-    /* ADJUSTED Tablet Logo Image Size */
   }
 }
 
@@ -1099,23 +1129,8 @@ body {
   gap: 15px;
 }
 
-.menu-icon-wrapper {
-  display: none;
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
-
 .menu-icon-wrapper:hover {
   background-color: rgba(255, 255, 255, 0.15);
-}
-
-.menu-icon-svg {
-  color: #FFFFFF;
-  display: block;
 }
 
 /* WaveGrid  */
@@ -1295,8 +1310,8 @@ body {
     /* Aapke QR code screenshot mein image area lamba dikhta hai,
                                   isliye height ko width se thoda zyada rakha hai relative to card.
                                   Asal mein, agar card 80px चौड़ा hai, to 90px height ajeeb lagega.
-                                  Aap ise `height: auto !important;` bhi kar sakte hain aspect ratio ke liye,
-                                  ya phir card ki width ke proportion mein set karein, jaise `height: 70px !important;` */
+                                  Aap ise height: auto !important; bhi kar sakte hain aspect ratio ke liye,
+                                  ya phir card ki width ke proportion mein set karein, jaise height: 70px !important; */
     object-fit: contain !important;
     /* Image ko is area mein fit karega */
     /* bg-[#BFC6CA] aur rounded-t-xl classes image tag par hain, wo yahan bhi apply hongi */
@@ -1337,10 +1352,8 @@ body {
 @media (max-width: 359px) {
   .product-card-wrapper {
     /* Yahan aap 2 ya 3 items per row kar sakte hain agar 4 bahut congested lagein */
-    /* For 3 items: width: calc( (100% - (2 * 8px)) / 3 ); */
-    /* Approx 33.33% - 5.33px */
-    /* For 2 items: width: calc( (100% - (1 * 8px)) / 2 ); */
-    /* Approx 50% - 4px */
+    /* For 3 items: width: calc( (100% - (2 * 8px)) / 3 ); / / Approx 33.33% - 5.33px */
+    /* For 2 items: width: calc( (100% - (1 * 8px)) / 2 ); / / Approx 50% - 4px */
     /* Abhi ke liye 4 hi rakhte hain, jaisa aapne kaha */
   }
 
@@ -2279,7 +2292,6 @@ dome spotolight
   height: 100%;
   border: none;
 }
-
 
 .htmldesc>p {
   margin-bottom: 4px;
