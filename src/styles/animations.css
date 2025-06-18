@@ -786,7 +786,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 20px;
+  padding: 4px 20px;
   text-decoration: none;
   color: #5D4037;
   font-family: "Space Grotesk", sans-serif;
@@ -821,6 +821,8 @@ body {
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
   transform: translateX(10px);
   transform-origin: left center;
+  max-height: 65vh;
+  overflow-y: scroll;
 }
 
 .dropdown-item:hover>.dropdown-submenu {
@@ -2226,7 +2228,7 @@ dome spotolight
 }
 
 .dropdown-menu .dropdown-item {
-  padding: 8px 16px;
+  padding: 4px 16px;
   cursor: pointer;
   white-space: nowrap;
   position: relative;
